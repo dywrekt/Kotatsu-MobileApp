@@ -69,7 +69,7 @@ function Les() {
         <Stack.Screen name="LesScreen" 
           component={LesScreen}
           options={{ 
-            title: 'Kies je les',
+            title: 'Kies je les!',
           }}
         />
       </Stack.Navigator> 
