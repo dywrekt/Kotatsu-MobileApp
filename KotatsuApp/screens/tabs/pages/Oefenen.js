@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Lessen1 from '../../tabs/pages/Lessen1'
+import Lessen1 from './Lessen1'
 const GLOBAL = require('../../assets/Globals');
 
 
 
-function LesScreen({ navigation }) {
+function OefenScreen({ navigation }) {
+
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -63,13 +65,13 @@ function LesScreen({ navigation }) {
 
 const Stack = createStackNavigator();
 
-function Les() {
+function Oefenen() {
   return (
       <Stack.Navigator>
-        <Stack.Screen name="LesScreen" 
-          component={LesScreen}
+        <Stack.Screen name="OefenScreen" 
+          component={OefenScreen}
           options={{ 
-            title: 'Kies je les!',
+            title: 'Kies je oefenen!',
           }}
         />
       </Stack.Navigator> 
@@ -95,4 +97,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Les;
+export default Oefenen;
