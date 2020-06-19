@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Lessen1 from './Lessen1'
 const GLOBAL = require('../../assets/Globals');
 
 
@@ -13,7 +12,7 @@ function OefenScreen({ navigation }) {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Lessen1')}
+        // onPress={() => navigation.navigate('Lessen1')} Navigaten naar de quiz
       >
       <Text style={styles.text}>
           Lesson 1
@@ -71,7 +70,7 @@ function Oefenen() {
         <Stack.Screen name="OefenScreen" 
           component={OefenScreen}
           options={{ 
-            title: 'Kies je oefenen!',
+            title: 'Kies je oefening!',
           }}
         />
       </Stack.Navigator> 
