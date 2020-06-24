@@ -1,86 +1,121 @@
-import React, {useState} from 'react';
-import { StyleSheet, View, Text, ButtonSafeAreaView,TouchableOpacity,FlatList,SafeAreaView} from 'react-native';
-import { globalStyles } from '../../../styles/global';
+import React, { Component } from 'react';
+import { ActivityIndicator, FlatList, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { CheckBox } from 'native-base';
 const GLOBAL = require('../../assets/Globals');
 const lessondata = ("../../assets/json/" + global.currentLesson + ".json");
-import jsondata from "../../assets/json/1.json";
 
-export default function Lessen({ App, navigation }) {
-     
-    const DATA = jsondata["data"];
-      
-      function Item({ id, title, selected, onSelect }) {
-        return (
-          <View style={styles.container}>
-        <TouchableOpacity 
-        style={styles.button}
-        title="Go to screen 2"
-        onPress={() => this.props.navigation.navigate('Screen2')} />
-          <TouchableOpacity
-            onPress={() => onSelect(id)}
-            style={[
-              styles.item,
-              { backgroundColor: selected ? '#829BC8' : '#a3c2fa' },
-            ]}
-          >
-            <Text style={styles.title}>{title}</Text>
-          </TouchableOpacity>
-          </View>
-        );
-      }
+export default class App extends Component {
+  state={
+    selectedLang1:false,
 
+  }
 
-        const [selected, setSelected] = React.useState(new Map());
-      
-        const onSelect = React.useCallback(
-          id => {
-            const newSelected = new Map(selected);
-            newSelected.set(id, !selected.get(id));
-      
-            setSelected(newSelected);
-          },
-          [selected],
-        );
-      
-        return (
-          <SafeAreaView style={globalStyles.container}>
-            <FlatList
-              data={DATA}
-              renderItem={({ item }) => (
-                <Item
-                  id={item.id}
-                  title={item.title}
-                  selected={!!selected.get(item.id)}
-                  onSelect={onSelect}
-                />
-              )}
-              keyExtractor={item => item.id}
-              extraData={selected}
-            />
-          </SafeAreaView>
-        );
-      }
-      
+  constructor(props) {
+    super(props);
 
-      
-      const styles = StyleSheet.create({
-        container: {
-          flex: 1,
-        },
-        item: {
-          backgroundColor: '#a3c2fa',
-          padding: 20,
-          marginVertical: 8,
-          marginHorizontal: 16,
-        },
-        title: {
-          fontSize: 15,
-        },
-        button: {
-          alignItems: "baseline",
-          backgroundColor: "red",
-          width: '45%',
-          
-        }
+    this.state = {
+      data: [],
+      isLoading: true
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://reactnative.dev/movies.json')
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ data: json.movies });
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        this.setState({ isLoading: false });
       });
-      
+  }
+
+  // renderSeparatorView = () => {
+  //   return (
+  //     <View style={{
+  //         height: 1, 
+  //         width: "100%",
+  //         backgroundColor: "#CEDCCE",
+  //       }}
+  //     />
+  //   );
+  // };
+
+  render() {
+    const { data, isLoading, selectedLang1 } = this.state;
+
+    return (
+    <View style={styles.container}>
+      <View style={styles.item}>
+        {isLoading ? <ActivityIndicator/> : (
+            <FlatList
+            data={data}
+            // ItemSeparatorComponent={this.renderSeparatorView}
+            keyExtractor={({ id }, index) => id}
+            renderItem={({ item }) => (   
+              <View style={{flexDirection: 'row'}}>    
+               <Text style={ 
+                {...styles.checkBoxTxt,
+                  color:this.state.selectedLang1?"#fc5185":"gray",
+                  fontWeight:this.state.selectedLang1? "bold" :"normal"
+                }}>{item.title}</Text>
+                <CheckBox checked={selectedLang1} color="#fc5185" onPress={()=>this.setState({selectedLang1:!selectedLang1})}/>
+                </View>
+            )}
+            />
+        )}
+      </View>
+          <TouchableOpacity 
+            onPress={(data) => navigate('Screen2')}
+            style={styles.submit}>
+            <Text style={{color:"white"}}>SUBMIT</Text>
+          </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f6f6f6',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  header:{
+    fontSize:25,
+    fontWeight:"bold",
+    color:"#364f6b",
+    marginBottom:40
+  },
+  item:{
+    width:"80%",
+    backgroundColor:"#fff",
+    borderRadius:20,
+    padding:10,
+    marginBottom:100,
+    flexDirection:"row",
+  },
+  checkBoxTxt:{
+    marginLeft:20
+  },
+  submit:{
+    width:"80%",
+    backgroundColor:"#fc5185",
+    borderRadius:20,
+    padding:10,
+    alignItems:"center",
+    marginTop:40
+  }
+});
+
+
+
+
+
+
+
+
+

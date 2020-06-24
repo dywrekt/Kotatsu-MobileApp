@@ -31,7 +31,7 @@ export default class LoginScreen extends React.Component {
         
 
         <View style={styles.logoContainer}>
-        <Image style={styles.logo} 
+          <Image style={styles.logo} 
         source={require('./assets/kotatsu.png')}
         />
         </View>
@@ -55,7 +55,7 @@ export default class LoginScreen extends React.Component {
           >
           <Text style={styles.btnEnterText}>INLOGGEN</Text>
         </TouchableOpacity>
-        </View>
+      </View>
     );
   }
 

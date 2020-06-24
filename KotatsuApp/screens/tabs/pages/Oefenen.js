@@ -14,49 +14,49 @@ function OefenScreen({ navigation }) {
         style={styles.button}
         // onPress={() => navigation.navigate('Lessen1')} Navigaten naar de quiz
       >
-      <Text style={styles.text}>
+        <Text style={styles.text}>
           Lesson 1
-          </Text>
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
+        // onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
       >
-       <Text style={styles.text}>
+        <Text style={styles.text}>
           Lesson 2
-          </Text>
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
+        // onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
       >
         <Text style={styles.text}>
           Lesson 3
-          </Text>
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
+        // onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
       >
         <Text style={styles.text}>
           Lesson 4
-          </Text>
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button} 
-        onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
+        // onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
       >
         <Text style={styles.text}>
           Lesson 5
-          </Text>
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button} 
-        onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
+        // onPress={() => navigation.navigate('Lessen1', { screen: 'Lessen1'})}
       >
         <Text style={styles.text}>
           Lesson 5
-          </Text>
+        </Text>
       </TouchableOpacity>
     </View>
   );
